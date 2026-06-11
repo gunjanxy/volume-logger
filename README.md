@@ -30,19 +30,19 @@ A Python app runs inside a Docker container and:
 │                                                              │
 │   volume-logger/                                             │
 │   └── data/                                                  │
-│       └── log.txt ◄──── Bind Mount (two-way sync) ────►     │
+│       └── log.txt ◄──── Bind Mount (two-way sync) ────►      │
 │                                                              │
-│              ┌───────────────────────────────┐              │
+│              ┌───────────────────────────────┐               │
 │              │        Docker Container        │              │
-│              │                               │              │
-│              │   🐍 python -u app.py         │              │
-│              │          ↓                    │              │
-│              │   /app/data/log.txt           │              │
-│              │                               │              │
-│              │   ❤️  Healthcheck             │              │
-│              │   test -f /app/data/log.txt   │              │
-│              │   interval: 30s               │              │
-│              └───────────────────────────────┘              │
+│              │                               │               │
+│              │   🐍 python -u app.py         │               │
+│              │          ↓                    │               │
+│              │   /app/data/log.txt           │               │
+│              │                               │               │
+│              │   ❤️  Healthcheck             │               │
+│              │   test -f /app/data/log.txt   │               │
+│              │   interval: 30s               │               │
+│              └───────────────────────────────┘               │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -158,18 +158,6 @@ CMD ["python", "-u", "app.py"]
 
 ---
 
-## 🔄 Volume Types Comparison
-
-| Feature | Bind Mount | Named Volume |
-|---|---|---|
-| You control the path | ✅ Yes | ❌ Docker manages it |
-| Files visible on your machine | ✅ Yes | ❌ Hidden in Docker storage |
-| Easy to inspect/edit | ✅ Yes | Harder |
-| Best for | Logs, code, configs | Databases, production data |
-| Syntax | `./data:/app/data` | `data:/app/data` |
-
----
-
 ## 🐳 Docker Hub
 
 The image is available on Docker Hub. Run it directly without cloning:
@@ -233,15 +221,6 @@ docker compose down
 # View log file on your machine
 cat data/log.txt
 ```
-
----
-
-## 📁 Related Projects
-
-| Project | Concepts |
-|---|---|
-| [linux-server-bootstrap](https://github.com/gunjanxy/linux-server-bootstrap) | Linux automation, Bash scripting, server provisioning |
-| volume-logger *(this project)* | Docker volumes, healthchecks, bind mounts |
 
 ---
 
