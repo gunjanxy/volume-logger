@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    volumes:
+      - "data:/app/data"
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /app/data/log.txt"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+volumes:
+  data:
